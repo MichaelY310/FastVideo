@@ -1,0 +1,265 @@
+{
+  "purpose": "Media checksums and sources for the RDD and C2F results.",
+  "sources": {
+    "training": "Wan RDD finetune 2026-09-26; step0 and step5000; media in training/",
+    "c2f": "Finetuned C2F 2026-09-27; prompt0, prompt11, prompt24; media in c2f/",
+    "historical": "rdd_fastwan_resident_c2f_ablation_20260908; evidence/historical_dmd3_paired.json"
+  },
+  "files": [
+    {
+      "path": "rdd_media/.gitignore",
+      "bytes": 174,
+      "sha256": "782767b62856669550f45bad2f8bcee0ca93720ab7006e6e1927a4eea093e2d9"
+    },
+    {
+      "path": "rdd_media/c2f/prompt0/c2f12.jpg",
+      "bytes": 121621,
+      "sha256": "a219b4b137b8acd29e1c9789cb3469ed13787e22b1f746dbc2f2967ee5acffd2"
+    },
+    {
+      "path": "rdd_media/c2f/prompt0/c2f12.mp4",
+      "bytes": 92227,
+      "sha256": "9af854f26c1bf7e02ac0f8632e45b44c05bb19505ac0e47c6be11a066c4af983"
+    },
+    {
+      "path": "rdd_media/c2f/prompt0/c2f20.jpg",
+      "bytes": 118163,
+      "sha256": "cab716f0029c3efcb9e4b130ea7d6131b35c93fbe5ab73044472e2872971bbcb"
+    },
+    {
+      "path": "rdd_media/c2f/prompt0/c2f20.mp4",
+      "bytes": 78165,
+      "sha256": "43b85261d5623faac22dcdf5769de2670ea04b25e2ad8658d5b5e5a7d2f9b1a2"
+    },
+    {
+      "path": "rdd_media/c2f/prompt0/c2f30.jpg",
+      "bytes": 116618,
+      "sha256": "2e0f9d1007cc553eb82ef4557410bce09275e1fb73009ba056d6a45673463f88"
+    },
+    {
+      "path": "rdd_media/c2f/prompt0/c2f30.mp4",
+      "bytes": 71159,
+      "sha256": "d10327d3018d16960cc1191db462e6d27a86c2a32d1225e728a25b8e2acafe02"
+    },
+    {
+      "path": "rdd_media/c2f/prompt0/c2f50.jpg",
+      "bytes": 115514,
+      "sha256": "d150f552d7fa497a343a064891b10def8a233f577afc208617fa31ede69cb1b1"
+    },
+    {
+      "path": "rdd_media/c2f/prompt0/c2f50.mp4",
+      "bytes": 66368,
+      "sha256": "95cf1a42780bf48ee2676f1e00b46af3d9de0c2552b1d6eefca7c17198ed98d2"
+    },
+    {
+      "path": "rdd_media/c2f/prompt0/comparison.jpg",
+      "bytes": 35736,
+      "sha256": "e10bafc9252e9103be16e8cf77ff58fa246a479af5f7f882c2e86bc138dd78e3"
+    },
+    {
+      "path": "rdd_media/c2f/prompt0/comparison.mp4",
+      "bytes": 540681,
+      "sha256": "50e3a5ec7b2fa907922bdb5b84d4dd4899e91fdb9229e719e53e27ebb462a997"
+    },
+    {
+      "path": "rdd_media/c2f/prompt0/dense.jpg",
+      "bytes": 114767,
+      "sha256": "d38405aa15d6f9df665a0ed706bdf4494ede200c465f37e4b7b2c5d588cddae7"
+    },
+    {
+      "path": "rdd_media/c2f/prompt0/dense.mp4",
+      "bytes": 60406,
+      "sha256": "2a193f5ddab151c95efc919db3673f72752bc2bbe93089e06c6971133de41fcc"
+    },
+    {
+      "path": "rdd_media/c2f/prompt0/metrics.json",
+      "bytes": 5636,
+      "sha256": "5a760f64252e3b5ee109d2db82899373157fc6c22c7914c18f99ace3037589b9"
+    },
+    {
+      "path": "rdd_media/c2f/prompt11/c2f12.jpg",
+      "bytes": 430033,
+      "sha256": "5638c7a605cd80dc043d474a834428b80aaf6da22caa8d73986a1ecd3e80fada"
+    },
+    {
+      "path": "rdd_media/c2f/prompt11/c2f12.mp4",
+      "bytes": 447061,
+      "sha256": "28ccc8e020f2c92a94052dea38b1cb83a12a4057a7b8ea955899899f4541be2b"
+    },
+    {
+      "path": "rdd_media/c2f/prompt11/c2f20.jpg",
+      "bytes": 426297,
+      "sha256": "4a090940b07d5c56d63be0520b9f077a72ae76c305be549fe3989bb151c5dc29"
+    },
+    {
+      "path": "rdd_media/c2f/prompt11/c2f20.mp4",
+      "bytes": 406178,
+      "sha256": "d3a9724ee6478c4379f141735c85cba4b3b1e31508b2213c8d7aacb0fbaa84de"
+    },
+    {
+      "path": "rdd_media/c2f/prompt11/c2f30.jpg",
+      "bytes": 424789,
+      "sha256": "e85537318135dd0195a7aa4e822331aadcfd22caa3345716b526d385b7896597"
+    },
+    {
+      "path": "rdd_media/c2f/prompt11/c2f30.mp4",
+      "bytes": 349783,
+      "sha256": "04405a1664d506c9a99a9d3ee1b54e52a549cf5775f35d09a8dc66960bfd83b3"
+    },
+    {
+      "path": "rdd_media/c2f/prompt11/c2f50.jpg",
+      "bytes": 422162,
+      "sha256": "cf7d30cb0be8e2191e5beb17fce7df6e391ad3e9d3ea0a7549d2f8dd06f01055"
+    },
+    {
+      "path": "rdd_media/c2f/prompt11/c2f50.mp4",
+      "bytes": 329127,
+      "sha256": "7f95c74bf475a32ca64c84ad5d860ff2f332893ac9fc3e1b71c6cda671e97504"
+    },
+    {
+      "path": "rdd_media/c2f/prompt11/comparison.jpg",
+      "bytes": 109629,
+      "sha256": "b5bffbfd13ebea3fbee5f0e186d4c03a8c9471c8bc20797c455ac9035931c42d"
+    },
+    {
+      "path": "rdd_media/c2f/prompt11/comparison.mp4",
+      "bytes": 1981980,
+      "sha256": "c2c4ad3248e7970b7c5a0d0a8af6b8342bd66ec4e3fb3439f1287ddc840f7466"
+    },
+    {
+      "path": "rdd_media/c2f/prompt11/dense.jpg",
+      "bytes": 419501,
+      "sha256": "da54971affde29fae0aa8455a178d3c977d9b30c423c174ed0a7f485268fa674"
+    },
+    {
+      "path": "rdd_media/c2f/prompt11/dense.mp4",
+      "bytes": 344708,
+      "sha256": "9c7612045af40ea8008fa278dd13f722a794dcfc691723b171845535f4c86271"
+    },
+    {
+      "path": "rdd_media/c2f/prompt11/metrics.json",
+      "bytes": 5612,
+      "sha256": "4ec281a4d5ddb10255a2329143acc64d8a802a901c472bbd88a0624a4121e1c2"
+    },
+    {
+      "path": "rdd_media/c2f/prompt24/c2f12.jpg",
+      "bytes": 180808,
+      "sha256": "c19af2dcdcef9a802e2f9c1eadabfee3d16d2fcf15e9d1d1292c8c22704d88a0"
+    },
+    {
+      "path": "rdd_media/c2f/prompt24/c2f12.mp4",
+      "bytes": 168441,
+      "sha256": "571e89b6004c18647015430623d99e2f738513fb740a7c5ba48c2784be39c03b"
+    },
+    {
+      "path": "rdd_media/c2f/prompt24/c2f20.jpg",
+      "bytes": 170664,
+      "sha256": "a34ac44157d1a0c983348762973a7c31fb13a4c9779015f73d85282b66b2a52c"
+    },
+    {
+      "path": "rdd_media/c2f/prompt24/c2f20.mp4",
+      "bytes": 148820,
+      "sha256": "16f79a74082f2aa603737e89e780bb6b1f49e4b2ba5a84bfe9eb601e07449f4a"
+    },
+    {
+      "path": "rdd_media/c2f/prompt24/c2f30.jpg",
+      "bytes": 171579,
+      "sha256": "31e2995c58fe50290fefe0dd4fa5a45d2b8f6080bf248dfb256b9d79305660af"
+    },
+    {
+      "path": "rdd_media/c2f/prompt24/c2f30.mp4",
+      "bytes": 145452,
+      "sha256": "cff8c0f527f60566c635f044390cb78ffbd37b1367740d4004ee16721a252892"
+    },
+    {
+      "path": "rdd_media/c2f/prompt24/c2f50.jpg",
+      "bytes": 169050,
+      "sha256": "995939da2307e9f814f5769a539927fdac19fab575f4eea674f77e20bb6b88ae"
+    },
+    {
+      "path": "rdd_media/c2f/prompt24/c2f50.mp4",
+      "bytes": 149303,
+      "sha256": "495b3a7c195cb9dd8c4a4e58b09cc79bebd041e2378fe4239cb20b9d4d62ee04"
+    },
+    {
+      "path": "rdd_media/c2f/prompt24/comparison.jpg",
+      "bytes": 45245,
+      "sha256": "872fdc522ff42fc12db84dfb83599f3ca8d43db87920b1d1cbf8eed7803397a5"
+    },
+    {
+      "path": "rdd_media/c2f/prompt24/comparison.mp4",
+      "bytes": 893465,
+      "sha256": "d4197f99dc50affab8543c0c47efafa736449eab7f6b27fd32d2f65a00df3b49"
+    },
+    {
+      "path": "rdd_media/c2f/prompt24/dense.jpg",
+      "bytes": 167934,
+      "sha256": "4e6e60ca87556c2ab2c86d152fa77b2c6ee61df0a37175f99431eb8e9dae3228"
+    },
+    {
+      "path": "rdd_media/c2f/prompt24/dense.mp4",
+      "bytes": 143900,
+      "sha256": "bbbdec48e3d0201577b8d4d27b01d92dd09361955558467a4b26f4c7903c3f99"
+    },
+    {
+      "path": "rdd_media/c2f/prompt24/metrics.json",
+      "bytes": 5704,
+      "sha256": "c3a69b910f3a58207184282d2a3b209131cf555e481596b653d4fbcc6d86ce2b"
+    },
+    {
+      "path": "rdd_media/evidence/finetuned_c2f_timing.json",
+      "bytes": 7199,
+      "sha256": "f60b645ed654a6228453552bdfa5f47fc3e011c32e321ca69f03956431236ffd"
+    },
+    {
+      "path": "rdd_media/evidence/historical_dmd3_paired.json",
+      "bytes": 536760,
+      "sha256": "5615559c8eb88d746232c407e265d27b1087606c7210f258d45c245d595cc6a4"
+    },
+    {
+      "path": "rdd_media/training/original_full.json",
+      "bytes": 2464,
+      "sha256": "73e4131e94c13d0dff0be761e104987be586d5df70f48a8aee0928ae80b2ddf2"
+    },
+    {
+      "path": "rdd_media/training/original_full.mp4",
+      "bytes": 51720,
+      "sha256": "0019f3946498df8fb2f1c145ccbb388ad46f46640c40d17e3098aacdd4d8eaa7"
+    },
+    {
+      "path": "rdd_media/training/original_full.png",
+      "bytes": 229507,
+      "sha256": "778aa7941f2578573faf90e9f123eccb891cd1c0776b91f1b28c60f643c373fd"
+    },
+    {
+      "path": "rdd_media/training/rdd_after_5000.json",
+      "bytes": 2376,
+      "sha256": "e1754693951ff47e18c1b9ed031cb788f030feb6635f7aa522b5dbd5770bcfb7"
+    },
+    {
+      "path": "rdd_media/training/rdd_after_5000.mp4",
+      "bytes": 63070,
+      "sha256": "32c381d6ad978415aa50a73cb001af6163cad2f9877dc322218a4f9f320c1b1a"
+    },
+    {
+      "path": "rdd_media/training/rdd_after_5000.png",
+      "bytes": 368592,
+      "sha256": "fee14edcfff2a8320cf49d405d7742c26eba4a57cd383b4dedbe009a10dc51fb"
+    },
+    {
+      "path": "rdd_media/training/rdd_before.json",
+      "bytes": 2459,
+      "sha256": "fb5077f551943dc693fb67ff779414f547f2430105a7e527e69adefb963a415b"
+    },
+    {
+      "path": "rdd_media/training/rdd_before.mp4",
+      "bytes": 146066,
+      "sha256": "bc3fab68f6b47ed19e34e26b08237c639c53ac4d79f176703c5a42de7a58ffa0"
+    },
+    {
+      "path": "rdd_media/training/rdd_before.png",
+      "bytes": 202665,
+      "sha256": "046248096658ba546682c1a12e237bf4d03a0148db258befab19b556f64059af"
+    }
+  ]
+}

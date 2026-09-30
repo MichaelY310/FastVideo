@@ -1,0 +1,540 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>RDD Video + C2F</title><style>
+:root{color-scheme:light;--ink:#172334;--muted:#536276;--line:#d8e1e9;--accent:#126d78}
+*{box-sizing:border-box}body{margin:0;background:#f4f7f9;color:var(--ink);font:16px/1.8 system-ui,'Microsoft YaHei',sans-serif}
+header{padding:28px max(24px,calc((100vw - 1120px)/2));background:#122d3a;color:#eff9ff}
+header strong{font-size:23px}header p{margin:5px 0;color:#c0dbe7;font-size:14px}
+main{max-width:1180px;margin:24px auto 60px;background:white;border:1px solid var(--line);padding:24px 40px 48px;border-radius:12px}
+nav{display:flex;flex-wrap:wrap;gap:8px 20px;padding:15px 0 22px;border-bottom:1px solid var(--line)}nav a{font-size:14px}
+h1{font-size:28px;line-height:1.4}h2{font-size:23px;border-top:1px solid var(--line);padding-top:26px;margin-top:44px;scroll-margin-top:18px}h3{font-size:19px;margin-top:26px}
+a{color:var(--accent);text-underline-offset:3px}p{margin:14px 0}strong{font-weight:700}
+pre{background:#102736;color:#e5f2f6;padding:20px;border-radius:8px;overflow:auto;font:14px/1.8 Consolas,monospace}code{font-family:Consolas,monospace;font-size:.91em;overflow-wrap:anywhere}
+p code,td code{background:#eef3f6;padding:2px 4px;border-radius:3px}.table-wrap{overflow:auto;margin:18px 0}table{border-collapse:collapse;width:100%;font-size:14px;line-height:1.7}th,td{border:1px solid var(--line);padding:10px 12px;text-align:left;vertical-align:top}th{background:#eaf2f5}tr:nth-child(even) td{background:#f8fafb}
+video{display:block;max-width:100%;height:auto;margin:15px 0;border-radius:8px;background:#0c1822}img{display:block;max-width:100%;height:auto;margin:12px 0;border:1px solid var(--line);border-radius:6px}
+.paired-comparison{padding:18px;border:1px solid var(--line);border-radius:10px;background:#f3f7fa}.pair-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.pair-grid figure{margin:12px 0 0;min-width:0}.pair-grid video{width:100%;aspect-ratio:832/448;object-fit:contain;margin:10px 0}.pair-grid figcaption{font-size:14px;line-height:1.6}.pair-toolbar button{border:1px solid #126d78;border-radius:6px;background:white;color:#126d78;padding:9px 14px;font:inherit;cursor:pointer}.pair-toolbar button:first-child{background:#126d78;color:white}.pair-status{font-size:13px;color:var(--muted);margin-bottom:0}
+li{margin:8px 0}footer{color:var(--muted);font-size:13px;border-top:1px solid var(--line);margin-top:34px;padding-top:16px}.inline-player{padding:12px;background:#edf4f7;border-radius:8px}.inline-player button{float:right;cursor:pointer}
+@media(max-width:700px){main{margin:0;padding:18px;border-radius:0}h1{font-size:23px}h2{font-size:20px}th,td{padding:7px}pre{font-size:12px}}
+</style></head><body><header><strong>FastVideo → RDD Video → C2F</strong><p>Implementation · Finetune · Results / 2026-09-28</p></header><main><nav><a href="#section-1">Implementation</a><a href="#section-2">Finetune</a><a href="#section-3">C2F</a><a href="#section-4">Historical Benchmark</a><a href="#section-5">Code &amp; Data</a></nav><h1>RDD Video + C2F</h1>
+<p><a href="README_RDD.html">Video page</a> · <a href="rdd/review.py">Diff viewer source</a> · <a href="rdd/TRAINING.md">Training details</a></p>
+<p>The HTML video page is for local viewing; on GitHub use the individual video links below. To generate the local diff page, run <code>python rdd/review.py</code>.</p>
+<h2 id="section-1">Implementation</h2>
+<p>RDD reuses the Wan backbone at increasing resolutions. It changes the flow path and velocity target; stage transitions recover clean latents, upsample, and apply noise filling.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+  <th>Added file</th>
+  <th>Function</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><a href="rdd/flow.py">rdd/flow.py</a></td>
+  <td>RDD path, velocity target, clean recovery, noise filling</td>
+</tr>
+<tr>
+  <td><a href="rdd/finetune.py">rdd/finetune.py</a></td>
+  <td>Wan training adapter and continuous Euler sampler</td>
+</tr>
+<tr>
+  <td><a href="rdd/train.py">rdd/train.py</a> · <a href="rdd/wan_finetune_300300400.yaml">config</a></td>
+  <td>Official Trainer integration and hyperparameters</td>
+</tr>
+<tr>
+  <td><a href="rdd/dense_c2f.py">rdd/dense_c2f.py</a></td>
+  <td>C2F self-attention hook for the finetuned, non-VSA Wan</td>
+</tr>
+<tr>
+  <td><a href="rdd/sample_finetuned_c2f.py">rdd/sample_finetuned_c2f.py</a></td>
+  <td>Paired sampling and repeated timing</td>
+</tr>
+<tr>
+  <td><a href="rdd/attention.py">rdd/attention.py</a></td>
+  <td>Legacy FastWan/VSA C2F controller and route utilities</td>
+</tr>
+<tr>
+  <td><a href="rdd/sampler.py">rdd/sampler.py</a> · <a href="rdd/run.py">run.py</a></td>
+  <td>Legacy DMD3 sampling; separate from Euler50</td>
+</tr>
+</tbody>
+</table></div>
+<p>Legacy FastWan/DMD3 usage: <a href="rdd/LEGACY_INFERENCE.md">inference guide</a>.</p>
+<p>Official <code>fastvideo/</code> and <code>fastvideo-kernel/</code> remain unchanged from <code>fastvideo-base</code> (<code>2413a576</code>). No new prediction head or learned transition.</p>
+<h2 id="section-2">Finetune</h2>
+<p>We finetune the original <strong>Wan2.1-T2V-1.3B</strong> with the RDD flow-matching objective, updating the full Transformer.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+  <th>Training</th>
+  <th>Configuration</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Base</td>
+  <td><code>Wan-AI/Wan2.1-T2V-1.3B-Diffusers</code>; non-DMD</td>
+</tr>
+<tr>
+  <td>Data</td>
+  <td>Mixkit preencoded latents; 384 train / 32 held-out clips</td>
+</tr>
+<tr>
+  <td>Parameters</td>
+  <td>Full Transformer; frozen T5/VAE; dense FlashAttention</td>
+</tr>
+<tr>
+  <td>Loss</td>
+  <td>Drift-aware velocity MSE; uniform time sampling</td>
+</tr>
+<tr>
+  <td>Optimizer</td>
+  <td>AdamW; LR 1e-5; 100-step warmup</td>
+</tr>
+<tr>
+  <td>Batch</td>
+  <td>8-GPU FSDP; 1/GPU × accumulation 2 = global 16</td>
+</tr>
+<tr>
+  <td>Precision</td>
+  <td>FP32 master/residual; BF16 mixed compute</td>
+</tr>
+<tr>
+  <td>Updates</td>
+  <td>5,003; before/after preview at 0 / 5,000</td>
+</tr>
+</tbody>
+</table></div>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+  <th>Stage</th>
+  <th style="text-align:right">Low</th>
+  <th style="text-align:right">Middle</th>
+  <th style="text-align:right">High</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Factor <code>(spatial, temporal)</code></td>
+  <td style="text-align:right">(4,1)</td>
+  <td style="text-align:right">(2,1)</td>
+  <td style="text-align:right">(1,1)</td>
+</tr>
+<tr>
+  <td>Latent <code>T×H×W</code></td>
+  <td style="text-align:right">8×14×26</td>
+  <td style="text-align:right">8×28×52</td>
+  <td style="text-align:right">8×56×104</td>
+</tr>
+<tr>
+  <td>Tokens</td>
+  <td style="text-align:right">728</td>
+  <td style="text-align:right">2,912</td>
+  <td style="text-align:right">11,648</td>
+</tr>
+<tr>
+  <td>Data-time interval</td>
+  <td style="text-align:right">0–0.4</td>
+  <td style="text-align:right">0.4–0.7</td>
+  <td style="text-align:right">0.7–1</td>
+</tr>
+<tr>
+  <td>Euler updates</td>
+  <td style="text-align:right">20</td>
+  <td style="text-align:right">15</td>
+  <td style="text-align:right">15</td>
+</tr>
+</tbody>
+</table></div>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+  <th>Sampling</th>
+  <th>Configuration</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Output</td>
+  <td>832×448; 29 frames; 16 fps</td>
+</tr>
+<tr>
+  <td>Schedule</td>
+  <td>Euler50 + 2 boundary evaluations; CFG5; flow shift 1</td>
+</tr>
+<tr>
+  <td>Model calls</td>
+  <td>104, including conditional/unconditional branches</td>
+</tr>
+<tr>
+  <td>Transition</td>
+  <td>Clean prediction → nearest upsample → fresh IID noise</td>
+</tr>
+<tr>
+  <td>Seed</td>
+  <td>20260926</td>
+</tr>
+</tbody>
+</table></div>
+<p><code>300/300/400</code> denotes high/middle/low time allocation. <strong>1,000 is the model's time scale, not the sampling step count.</strong></p>
+<h3>Results</h3>
+<p>Same prompt, seed and sampler; only weights change. Both sides use RDD with dense attention, without C2F.</p>
+<div class="paired-comparison" id="finetune-before-after">
+<div class="pair-toolbar"><button type="button" data-pair-action="restart">Play both from start</button> <button type="button" data-pair-action="pause">Pause both</button></div>
+<div class="pair-grid">
+<figure><figcaption><strong>Before finetune</strong><br>0 updates · Original Wan + RDD</figcaption><video controls muted playsinline preload="metadata" poster="rdd_media/training/rdd_before.png" src="rdd_media/training/rdd_before.mp4"></video></figure>
+<figure><figcaption><strong>After finetune</strong><br>5,000 updates · Finetuned Wan + RDD</figcaption><video controls muted playsinline preload="metadata" src="rdd_media/training/rdd_after_5000.mp4"></video></figure>
+</div>
+<p class="pair-status" aria-live="polite">Play both from the start, or use individual controls.</p>
+</div>
+
+<p><a class="clip-link" href="rdd_media/training/rdd_before.mp4">Before</a> · <a class="clip-link" href="rdd_media/training/rdd_after_5000.mp4">After</a> · Metadata: <a href="rdd_media/training/rdd_before.json">before</a> / <a href="rdd_media/training/rdd_after_5000.json">after</a></p>
+<p><img src="rdd_media/training/rdd_after_5000.png" alt="Finetuned RDD: frames over time" /></p>
+<p>Recognizable composition replaces color blocks. Hand/face artifacts and limited motion remain; this example is not a generalization benchmark.</p>
+<details>
+<summary>Original full-resolution Wan reference</summary>
+<video controls playsinline preload="none" width="720" poster="rdd_media/training/original_full.png" src="rdd_media/training/original_full.mp4"></video>
+<p>Original weights; Euler50 / CFG5 / flow shift 1; 100 model calls. Not an optimized official Wan sampler.</p>
+</details>
+
+<h2 id="section-3">C2F</h2>
+<p>Use each stage's endpoint Q/K to select block routes for the next stage. Recompute current Q/K/V and sparse attention every step.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+  <th>Component</th>
+  <th>Configuration</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Hook</td>
+  <td>Self-attention after RoPE; cross-attention/MLP unchanged</td>
+</tr>
+<tr>
+  <td>Low stage</td>
+  <td>Dense</td>
+</tr>
+<tr>
+  <td>Routing</td>
+  <td>Mean-pool Q/K in 4×4×4-token tiles → block QK → Top-K</td>
+</tr>
+<tr>
+  <td>Transfer</td>
+  <td>Custom Triton route lift: parent links → child-block indices</td>
+</tr>
+<tr>
+  <td>Refresh</td>
+  <td>Low endpoint guides middle; middle endpoint guides high</td>
+</tr>
+<tr>
+  <td>Cache</td>
+  <td>Routes only; separate per layer/head/CFG branch; fixed within a stage</td>
+</tr>
+<tr>
+  <td>Keep fraction</td>
+  <td>50%, 30%, 20%, 12.5%; self block included</td>
+</tr>
+<tr>
+  <td>Actual keep at requested 20%</td>
+  <td>Middle 24.86%; high 22.03% of block pairs</td>
+</tr>
+<tr>
+  <td>Weights</td>
+  <td>Checkpoint-5003; <strong>no C2F finetuning</strong></td>
+</tr>
+</tbody>
+</table></div>
+<p>No cached attention probabilities or AV outputs. Route construction still runs at stage endpoints.</p>
+<h3>Kernels</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+  <th>File</th>
+  <th>Ownership / operation</th>
+  <th>Used below</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><a href="rdd/kernels/route_lift.py">route_lift.py</a></td>
+  <td><strong>Custom Triton</strong>: coarse routes → compact fine indices/counts</td>
+  <td>Yes</td>
+</tr>
+<tr>
+  <td><a href="fastvideo-kernel/python/fastvideo_kernel/block_sparse_attn.py">block_sparse_attn.py</a> → <a href="fastvideo-kernel/python/fastvideo_kernel/triton_kernels/block_sparse_attn_triton.py">Triton executor</a></td>
+  <td><strong>Unmodified upstream</strong>: selected QK, softmax, AV</td>
+  <td>Yes</td>
+</tr>
+<tr>
+  <td><a href="rdd/kernels/smallq.py">smallq.py</a></td>
+  <td>Custom Triton: 16/32-token query tiles</td>
+  <td>No; legacy option</td>
+</tr>
+<tr>
+  <td><a href="rdd/kernels/noise_filling.py">noise_filling.py</a></td>
+  <td>Custom Triton: fused upsample/noise blend</td>
+  <td>No; legacy option</td>
+</tr>
+</tbody>
+</table></div>
+<h3>Results</h3>
+<p><strong>Baseline: finetuned dense RDD, not VSA.</strong> Same sampling configuration as above.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+  <th>Keep</th>
+  <th style="text-align:right">Denoise, s</th>
+  <th style="text-align:right">Latency reduction</th>
+  <th style="text-align:right">+VAE, s</th>
+  <th style="text-align:right">Total reduction</th>
+  <th>Visual result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Dense</td>
+  <td style="text-align:right">14.582</td>
+  <td style="text-align:right">Baseline</td>
+  <td style="text-align:right">16.027</td>
+  <td style="text-align:right">Baseline</td>
+  <td>Reference</td>
+</tr>
+<tr>
+  <td>50%</td>
+  <td style="text-align:right">14.967</td>
+  <td style="text-align:right">−2.64%</td>
+  <td style="text-align:right">16.412</td>
+  <td style="text-align:right">−2.40%</td>
+  <td>Closest; slower</td>
+</tr>
+<tr>
+  <td>30%</td>
+  <td style="text-align:right">14.229</td>
+  <td style="text-align:right">2.42%</td>
+  <td style="text-align:right">15.673</td>
+  <td style="text-align:right">2.21%</td>
+  <td>Local distortion</td>
+</tr>
+<tr>
+  <td>20%</td>
+  <td style="text-align:right">13.917</td>
+  <td style="text-align:right">4.56%</td>
+  <td style="text-align:right">15.361</td>
+  <td style="text-align:right">4.16%</td>
+  <td>Structural artifacts</td>
+</tr>
+<tr>
+  <td>12.5%</td>
+  <td style="text-align:right">13.582</td>
+  <td style="text-align:right">6.86%</td>
+  <td style="text-align:right">15.026</td>
+  <td style="text-align:right">6.25%</td>
+  <td>Severe artifacts</td>
+</tr>
+</tbody>
+</table></div>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+  <th>Timing protocol</th>
+  <th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Hardware</td>
+  <td>Single RTX PRO 6000 Blackwell Server Edition</td>
+</tr>
+<tr>
+  <td>Repeats</td>
+  <td>1 warmup/method; 5 interleaved rounds; median</td>
+</tr>
+<tr>
+  <td>Included</td>
+  <td>Denoising, boundary/route work; VAE in total</td>
+</tr>
+<tr>
+  <td>Excluded</td>
+  <td>Loading, text encoding, initial compilation, MP4 export</td>
+</tr>
+<tr>
+  <td>Scope</td>
+  <td>Makeup prompt timing; 3 prompts for visual inspection</td>
+</tr>
+</tbody>
+</table></div>
+<p><a href="rdd_media/evidence/finetuned_c2f_timing.json">Raw timing</a>. Reduction = <code>1 − method/baseline</code>; negative means slower. No demonstrated quality-preserving 10–20% gain; no FVD/VBench evaluation.</p>
+<p>Each grid: <strong>top-left dense; top-right 50%; bottom-left 20%; bottom-right 12.5%.</strong></p>
+<h4>Makeup</h4>
+<p><video controls playsinline preload="none" width="832" poster="rdd_media/c2f/prompt0/comparison.jpg" src="rdd_media/c2f/prompt0/comparison.mp4"></video></p>
+<p><a class="clip-link" href="rdd_media/c2f/prompt0/dense.mp4">Dense</a> · <a class="clip-link" href="rdd_media/c2f/prompt0/c2f50.mp4">50%</a> · <a class="clip-link" href="rdd_media/c2f/prompt0/c2f30.mp4">30%</a> · <a class="clip-link" href="rdd_media/c2f/prompt0/c2f20.mp4">20%</a> · <a class="clip-link" href="rdd_media/c2f/prompt0/c2f12.mp4">12.5%</a> · <a href="rdd_media/c2f/prompt0/metrics.json">Config</a></p>
+<h4>Dog</h4>
+<p><video controls playsinline preload="none" width="832" poster="rdd_media/c2f/prompt11/comparison.jpg" src="rdd_media/c2f/prompt11/comparison.mp4"></video></p>
+<p><a class="clip-link" href="rdd_media/c2f/prompt11/dense.mp4">Dense</a> · <a class="clip-link" href="rdd_media/c2f/prompt11/c2f50.mp4">50%</a> · <a class="clip-link" href="rdd_media/c2f/prompt11/c2f30.mp4">30%</a> · <a class="clip-link" href="rdd_media/c2f/prompt11/c2f20.mp4">20%</a> · <a class="clip-link" href="rdd_media/c2f/prompt11/c2f12.mp4">12.5%</a> · <a href="rdd_media/c2f/prompt11/metrics.json">Config</a></p>
+<h4>Bedroom</h4>
+<p><video controls playsinline preload="none" width="832" poster="rdd_media/c2f/prompt24/comparison.jpg" src="rdd_media/c2f/prompt24/comparison.mp4"></video></p>
+<p><a class="clip-link" href="rdd_media/c2f/prompt24/dense.mp4">Dense</a> · <a class="clip-link" href="rdd_media/c2f/prompt24/c2f50.mp4">50%</a> · <a class="clip-link" href="rdd_media/c2f/prompt24/c2f30.mp4">30%</a> · <a class="clip-link" href="rdd_media/c2f/prompt24/c2f20.mp4">20%</a> · <a class="clip-link" href="rdd_media/c2f/prompt24/c2f12.mp4">12.5%</a> · <a href="rdd_media/c2f/prompt24/metrics.json">Config</a></p>
+<h2 id="section-4">Historical Benchmark</h2>
+<p><strong>FastWan DMD3, not the finetuned Euler50 model.</strong> Same model, VSA20, resident execution; 5 warmups + 30 interleaved rounds; 832×448×29. No VAE timing.</p>
+<h3>RDD vs. Fixed Resolution</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+  <th>Spatial factors</th>
+  <th style="text-align:right">Denoise + boundary, s</th>
+  <th style="text-align:right">Speedup</th>
+  <th style="text-align:right">Latency reduction</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>1→1→1</td>
+  <td style="text-align:right">0.8550</td>
+  <td style="text-align:right">1.00×</td>
+  <td style="text-align:right">0%</td>
+</tr>
+<tr>
+  <td>2→2→1</td>
+  <td style="text-align:right">0.4214</td>
+  <td style="text-align:right">2.03×</td>
+  <td style="text-align:right">50.71%</td>
+</tr>
+<tr>
+  <td>4→2→1</td>
+  <td style="text-align:right">0.4135</td>
+  <td style="text-align:right">2.07×</td>
+  <td style="text-align:right">51.64%</td>
+</tr>
+<tr>
+  <td>4→4→1</td>
+  <td style="text-align:right">0.4041</td>
+  <td style="text-align:right">2.12×</td>
+  <td style="text-align:right">52.74%</td>
+</tr>
+</tbody>
+</table></div>
+<p>These weights were <strong>not RDD-finetuned</strong>; timings do not establish equal-quality speedup. A matched full-resolution benchmark for the new finetuned Euler50 model remains unmeasured.</p>
+<h3>C2F vs. VSA</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+  <th>Spatial factors</th>
+  <th style="text-align:right">RDD + VSA20, s</th>
+  <th style="text-align:right">RDD + legacy C2F, s</th>
+  <th style="text-align:right">Latency reduction</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>2→2→1</td>
+  <td style="text-align:right">0.42141</td>
+  <td style="text-align:right">0.41223</td>
+  <td style="text-align:right">2.18%</td>
+</tr>
+<tr>
+  <td>4→2→1</td>
+  <td style="text-align:right">0.41347</td>
+  <td style="text-align:right">0.41290</td>
+  <td style="text-align:right">0.14%</td>
+</tr>
+<tr>
+  <td>4→4→1</td>
+  <td style="text-align:right">0.40412</td>
+  <td style="text-align:right">0.39634</td>
+  <td style="text-align:right">1.93%</td>
+</tr>
+</tbody>
+</table></div>
+<p><a href="rdd_media/evidence/historical_dmd3_paired.json">Raw benchmark</a>.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+  <th>Limitation</th>
+  <th>Explanation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Unfair legacy comparison</td>
+  <td><code>c2f_route_only</code> removed VSA's coarse-output branch; keep ratios also differed (~25% vs.20% for 421)</td>
+</tr>
+<tr>
+  <td>Coarse output</td>
+  <td>VSA uses <code>softmax(QcKcᵀ/√d)Vc</code> in its gated output; retaining it requires current coarse attention</td>
+</tr>
+<tr>
+  <td>Small savings</td>
+  <td>Block-level routing is relatively cheap; projections, MLP, selected QK/AV and VAE remain</td>
+</tr>
+<tr>
+  <td>Added overhead</td>
+  <td>Route mapping, packing, padding and kernel launches offset savings</td>
+</tr>
+<tr>
+  <td>Quality</td>
+  <td>Fixed coarse routes can miss new details and become stale</td>
+</tr>
+</tbody>
+</table></div>
+<p>These records do <strong>not</strong> establish a fair, quality-preserving advantage over VSA. The current non-VSA Wan has no coarse-output branch to remove.</p>
+<h2 id="section-5">Code &amp; Data</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+  <th>Resource</th>
+  <th>Location</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Full training configuration</td>
+  <td><a href="rdd/wan_finetune_300300400.yaml">YAML</a></td>
+</tr>
+<tr>
+  <td>Inference instructions</td>
+  <td><a href="rdd/FINETUNED_C2F.md">FINETUNED_C2F.md</a></td>
+</tr>
+<tr>
+  <td>Final checkpoint</td>
+  <td><code>checkpoint-5003</code>; weights/data are not included in this repository</td>
+</tr>
+<tr>
+  <td>Media / evidence</td>
+  <td><code>rdd_media/</code> · <a href="rdd_media/asset_manifest.json">SHA256 manifest</a></td>
+</tr>
+<tr>
+  <td>Diff</td>
+  <td><code>git diff fastvideo-base HEAD</code>; fetch the <code>fastvideo-base</code> tag for the pinned upstream comparison</td>
+</tr>
+</tbody>
+</table></div>
+<p>Training-preview timings are not used as inference benchmarks.</p>
+<footer>Source: README_RDD.md. Local media; no CDN. Individual video links open inline.</footer></main><script>
+document.querySelectorAll('.paired-comparison').forEach(group=>{
+  const videos=[...group.querySelectorAll('video')];
+  const status=group.querySelector('.pair-status');
+  let version=0;
+  group.querySelector('[data-pair-action="pause"]').onclick=()=>{
+    version++;videos.forEach(video=>video.pause());status.textContent='Both videos paused.';
+  };
+  group.querySelector('[data-pair-action="restart"]').onclick=async()=>{
+    const current=++version;
+    videos.forEach(video=>{video.pause();video.currentTime=0});
+    status.textContent='Playing: before (left), after (right).';
+    try{
+      await Promise.all(videos.map(video=>video.play()));
+      if(current!==version)videos.forEach(video=>video.pause());
+    }catch(error){
+      if(current===version){videos.forEach(video=>video.pause());status.textContent='Playback blocked. Use the individual play buttons.';}
+    }
+  };
+});
+document.querySelectorAll('.clip-link').forEach(link=>link.addEventListener('click',event=>{
+  if(event.ctrlKey||event.metaKey||event.shiftKey||event.altKey)return;
+  event.preventDefault();const box=document.createElement('div');box.className='inline-player';
+  const close=document.createElement('button');close.textContent='Close';
+  const title=document.createElement('strong');title.textContent=link.textContent;
+  const video=document.createElement('video');video.src=link.getAttribute('href');video.controls=true;video.playsInline=true;video.preload='metadata';
+  close.onclick=()=>{video.pause();box.remove()};box.append(close,title,video);
+  const parent=link.closest('p');parent.insertAdjacentElement('afterend',box);box.scrollIntoView({block:'nearest',behavior:'smooth'});
+}));
+</script></body></html>

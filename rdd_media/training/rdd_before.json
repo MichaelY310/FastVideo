@@ -1,0 +1,57 @@
+{
+  "iteration": 0,
+  "name": "rdd",
+  "denoise_seconds": 35.785290248692036,
+  "nfe_cond_plus_uncond": 104,
+  "cfg": 5.0,
+  "seed": 20260926,
+  "steps_coarse_middle_fine": [
+    20,
+    15,
+    15
+  ],
+  "extra_boundary_evaluations": 2,
+  "factors": [
+    [
+      4,
+      1
+    ],
+    [
+      2,
+      1
+    ],
+    [
+      1,
+      1
+    ]
+  ],
+  "boundaries_data_time": [
+    0.0,
+    0.4,
+    0.7,
+    1.0
+  ],
+  "full": false,
+  "transition": "noise_filling",
+  "validation": {
+    "validation/stage_0_mse": 0.30047887563705444,
+    "validation/stage_1_mse": 0.2020988166332245,
+    "validation/stage_2_mse": 0.41711580753326416
+  },
+  "caption": [
+    {
+      "id": "mixkit-makeup-artist-and-male-model-in-photo-studio-42016",
+      "file_name": "mixkit-makeup-artist-and-male-model-in-photo-studio-42016",
+      "caption": "The video showcases a woman with long dark hair and glasses, dressed in black, meticulously applying makeup or concealer to a shirtless man's face, focusing on his cheeks and chin area. The man is adorned with a beard and wears a brown belt or accessory around his waist. Both individuals are set against a plain, gray background, indicative of a studio or photography setting. Throughout the process, the woman maintains a focused expression as she blends and smooths the makeup or concealer on the man's face, with no significant change in their positions or the background, suggesting a continuous makeup application in the same environment.",
+      "media_type": "video",
+      "width": 480,
+      "height": 832,
+      "num_frames": 21,
+      "duration_sec": 5.06,
+      "fps": 16.0,
+      "prompt": "The video showcases a woman with long dark hair and glasses, dressed in black, meticulously applying makeup or concealer to a shirtless man's face, focusing on his cheeks and chin area. The man is adorned with a beard and wears a brown belt or accessory around his waist. Both individuals are set against a plain, gray background, indicative of a studio or photography setting. Throughout the process, the woman maintains a focused expression as she blends and smooths the makeup or concealer on the man's face, with no significant change in their positions or the background, suggesting a continuous makeup application in the same environment."
+    }
+  ],
+  "warning": "Pilot visual check, not a FID/VBench or fair speed measurement.",
+  "export_fix": "float [0,1] frames; redecoded original saved latent; no resampling"
+}

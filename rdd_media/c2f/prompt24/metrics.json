@@ -1,0 +1,164 @@
+{
+  "checkpoint": "rdd_video_finetune_20260926/train/checkpoint-5003",
+  "row": 24,
+  "seed": 20260926,
+  "caption": [
+    {
+      "id": "mixkit-father-playing-piggyback-with-his-little-daughter-43338",
+      "file_name": "mixkit-father-playing-piggyback-with-his-little-daughter-43338",
+      "caption": "The video showcases a person in a white outfit and cap transitioning from a standing position beside a bed to a reclining position on the bed within a warm and muted interior room setting. The bed is equipped with white bedding and a navy blue blanket or sheet at the foot, positioned against a wall adorned with a woven reddish-brown decorative panel. To the right of the scene, wooden doors or closets are visible. Throughout this transition, the background elements, including the wall panel and wooden doors, remain consistent, with the person moving from standing beside the bed to lying down on it with their arms outstretched, suggesting a state of rest or relaxation.",
+      "media_type": "video",
+      "width": 480,
+      "height": 832,
+      "num_frames": 21,
+      "duration_sec": 5.06,
+      "fps": 16.0,
+      "prompt": "The video showcases a person in a white outfit and cap transitioning from a standing position beside a bed to a reclining position on the bed within a warm and muted interior room setting. The bed is equipped with white bedding and a navy blue blanket or sheet at the foot, positioned against a wall adorned with a woven reddish-brown decorative panel. To the right of the scene, wooden doors or closets are visible. Throughout this transition, the background elements, including the wall panel and wooden doors, remain consistent, with the person moving from standing beside the bed to lying down on it with their arms outstretched, suggesting a state of rest or relaxation."
+    }
+  ],
+  "factors": [
+    [
+      4,
+      1
+    ],
+    [
+      2,
+      1
+    ],
+    [
+      1,
+      1
+    ]
+  ],
+  "data_time_boundaries": [
+    0.0,
+    0.4,
+    0.7,
+    1.0
+  ],
+  "steps": [
+    20,
+    15,
+    15
+  ],
+  "cfg": 5.0,
+  "transition": "noise_filling",
+  "size": [
+    832,
+    448,
+    29
+  ],
+  "fps": 16,
+  "gpu": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+  "physical_gpu": "2",
+  "precision": "FP32 master/residual; official BF16 autocast",
+  "settings": {
+    "dense": {
+      "requested_coarse_topk_fraction": null,
+      "actual_lifted_block_density": {},
+      "denoise_seconds": [
+        15.210366183891892,
+        15.175664059817791,
+        15.20389143936336
+      ],
+      "vae_seconds": [
+        1.446359183639288,
+        1.4477264527231455,
+        1.4490730222314596
+      ],
+      "denoise_median": 15.20389143936336,
+      "total_median": 16.65296446159482,
+      "model_calls_cond_plus_uncond": 104,
+      "latent_rmse_vs_dense": 0.0,
+      "warning": "RMSE is paired fidelity, not a perceptual quality score; no C2F finetuning."
+    },
+    "c2f50": {
+      "requested_coarse_topk_fraction": 0.5,
+      "actual_lifted_block_density": {
+        "stage1": 0.5025421977043152,
+        "stage2": 0.5170528888702393
+      },
+      "denoise_seconds": [
+        15.645575989037752,
+        14.96869388408959,
+        14.946945309638977
+      ],
+      "vae_seconds": [
+        1.4484179355204105,
+        1.4492092113941908,
+        1.4499476682394743
+      ],
+      "denoise_median": 14.96869388408959,
+      "total_median": 16.41790309548378,
+      "model_calls_cond_plus_uncond": 104,
+      "latent_rmse_vs_dense": 0.1663939356803894,
+      "warning": "RMSE is paired fidelity, not a perceptual quality score; no C2F finetuning."
+    },
+    "c2f30": {
+      "requested_coarse_topk_fraction": 0.3,
+      "actual_lifted_block_density": {
+        "stage1": 0.31269317865371704,
+        "stage2": 0.31644436717033386
+      },
+      "denoise_seconds": [
+        15.068921720609069,
+        15.48786474391818,
+        15.323219254612923
+      ],
+      "vae_seconds": [
+        1.4500497411936522,
+        1.4502893015742302,
+        1.4497319534420967
+      ],
+      "denoise_median": 15.323219254612923,
+      "total_median": 16.77295120805502,
+      "model_calls_cond_plus_uncond": 104,
+      "latent_rmse_vs_dense": 0.21949590742588043,
+      "warning": "RMSE is paired fidelity, not a perceptual quality score; no C2F finetuning."
+    },
+    "c2f20": {
+      "requested_coarse_topk_fraction": 0.2,
+      "actual_lifted_block_density": {
+        "stage1": 0.24885737895965576,
+        "stage2": 0.22433483600616455
+      },
+      "denoise_seconds": [
+        13.854878664016724,
+        13.919929519295692,
+        15.290857043117285
+      ],
+      "vae_seconds": [
+        1.4498564079403877,
+        1.450157344341278,
+        1.4499247297644615
+      ],
+      "denoise_median": 13.919929519295692,
+      "total_median": 15.37008686363697,
+      "model_calls_cond_plus_uncond": 104,
+      "latent_rmse_vs_dense": 0.2271558940410614,
+      "warning": "RMSE is paired fidelity, not a perceptual quality score; no C2F finetuning."
+    },
+    "c2f12": {
+      "requested_coarse_topk_fraction": 0.125,
+      "actual_lifted_block_density": {
+        "stage1": 0.12818169593811035,
+        "stage2": 0.1295372098684311
+      },
+      "denoise_seconds": [
+        14.701867828145623,
+        14.780496483668685,
+        14.24852634780109
+      ],
+      "vae_seconds": [
+        1.4491630736738443,
+        1.4495018068701029,
+        1.449054216966033
+      ],
+      "denoise_median": 14.701867828145623,
+      "total_median": 16.151030901819468,
+      "model_calls_cond_plus_uncond": 104,
+      "latent_rmse_vs_dense": 0.28020790219306946,
+      "warning": "RMSE is paired fidelity, not a perceptual quality score; no C2F finetuning."
+    }
+  }
+}

@@ -1,0 +1,164 @@
+{
+  "checkpoint": "rdd_video_finetune_20260926/train/checkpoint-5003",
+  "row": 11,
+  "seed": 20260926,
+  "caption": [
+    {
+      "id": "mixkit-dachshund-dog-running-through-a-park-to-reach-its-owner-10365",
+      "file_name": "mixkit-dachshund-dog-running-through-a-park-to-reach-its-owner-10365",
+      "caption": "The video showcases a small dog with a reddish-brown coat in a park or green space, initially standing and looking off-camera. As the video progresses, the dog moves closer to the camera, appearing larger and walking or trotting across the grassy area. The background, featuring tall trees and buildings, suggests a public park within a residential or urban setting. Throughout the video, a parked car becomes visible in the background near the structures. The overall setting remains consistent, with the primary change being the dog's movement towards the camera and the introduction of the parked car in the background.",
+      "media_type": "video",
+      "width": 480,
+      "height": 832,
+      "num_frames": 21,
+      "duration_sec": 5.06,
+      "fps": 16.0,
+      "prompt": "The video showcases a small dog with a reddish-brown coat in a park or green space, initially standing and looking off-camera. As the video progresses, the dog moves closer to the camera, appearing larger and walking or trotting across the grassy area. The background, featuring tall trees and buildings, suggests a public park within a residential or urban setting. Throughout the video, a parked car becomes visible in the background near the structures. The overall setting remains consistent, with the primary change being the dog's movement towards the camera and the introduction of the parked car in the background."
+    }
+  ],
+  "factors": [
+    [
+      4,
+      1
+    ],
+    [
+      2,
+      1
+    ],
+    [
+      1,
+      1
+    ]
+  ],
+  "data_time_boundaries": [
+    0.0,
+    0.4,
+    0.7,
+    1.0
+  ],
+  "steps": [
+    20,
+    15,
+    15
+  ],
+  "cfg": 5.0,
+  "transition": "noise_filling",
+  "size": [
+    832,
+    448,
+    29
+  ],
+  "fps": 16,
+  "gpu": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+  "physical_gpu": "1",
+  "precision": "FP32 master/residual; official BF16 autocast",
+  "settings": {
+    "dense": {
+      "requested_coarse_topk_fraction": null,
+      "actual_lifted_block_density": {},
+      "denoise_seconds": [
+        15.253219673410058,
+        15.27224362269044,
+        15.20891858637333
+      ],
+      "vae_seconds": [
+        1.442999754101038,
+        1.4443340841680765,
+        1.446389801800251
+      ],
+      "denoise_median": 15.253219673410058,
+      "total_median": 16.696219427511096,
+      "model_calls_cond_plus_uncond": 104,
+      "latent_rmse_vs_dense": 0.0,
+      "warning": "RMSE is paired fidelity, not a perceptual quality score; no C2F finetuning."
+    },
+    "c2f50": {
+      "requested_coarse_topk_fraction": 0.5,
+      "actual_lifted_block_density": {
+        "stage1": 0.49585819244384766,
+        "stage2": 0.5137013792991638
+      },
+      "denoise_seconds": [
+        15.820803098380566,
+        14.963473670184612,
+        15.024411344900727
+      ],
+      "vae_seconds": [
+        1.4459253456443548,
+        1.4463450349867344,
+        1.4471039697527885
+      ],
+      "denoise_median": 15.024411344900727,
+      "total_median": 16.471515314653516,
+      "model_calls_cond_plus_uncond": 104,
+      "latent_rmse_vs_dense": 0.21318337321281433,
+      "warning": "RMSE is paired fidelity, not a perceptual quality score; no C2F finetuning."
+    },
+    "c2f30": {
+      "requested_coarse_topk_fraction": 0.3,
+      "actual_lifted_block_density": {
+        "stage1": 0.3062181770801544,
+        "stage2": 0.3138033151626587
+      },
+      "denoise_seconds": [
+        15.132792657241225,
+        15.39721117541194,
+        15.475532479584217
+      ],
+      "vae_seconds": [
+        1.4473897814750671,
+        1.446895968168974,
+        1.4472531601786613
+      ],
+      "denoise_median": 15.39721117541194,
+      "total_median": 16.844107143580914,
+      "model_calls_cond_plus_uncond": 104,
+      "latent_rmse_vs_dense": 0.2695333957672119,
+      "warning": "RMSE is paired fidelity, not a perceptual quality score; no C2F finetuning."
+    },
+    "c2f20": {
+      "requested_coarse_topk_fraction": 0.2,
+      "actual_lifted_block_density": {
+        "stage1": 0.24412736296653748,
+        "stage2": 0.22136032581329346
+      },
+      "denoise_seconds": [
+        13.963290836662054,
+        13.978881508111954,
+        15.072195455431938
+      ],
+      "vae_seconds": [
+        1.4467375334352255,
+        1.4479854460805655,
+        1.447484714910388
+      ],
+      "denoise_median": 13.978881508111954,
+      "total_median": 15.42686695419252,
+      "model_calls_cond_plus_uncond": 104,
+      "latent_rmse_vs_dense": 0.2992164194583893,
+      "warning": "RMSE is paired fidelity, not a perceptual quality score; no C2F finetuning."
+    },
+    "c2f12": {
+      "requested_coarse_topk_fraction": 0.125,
+      "actual_lifted_block_density": {
+        "stage1": 0.12725165486335754,
+        "stage2": 0.13156189024448395
+      },
+      "denoise_seconds": [
+        14.92367746308446,
+        14.888331225141883,
+        14.173217060044408
+      ],
+      "vae_seconds": [
+        1.4468922186642885,
+        1.4465782325714827,
+        1.446338165551424
+      ],
+      "denoise_median": 14.888331225141883,
+      "total_median": 16.334909457713366,
+      "model_calls_cond_plus_uncond": 104,
+      "latent_rmse_vs_dense": 0.36453086137771606,
+      "warning": "RMSE is paired fidelity, not a perceptual quality score; no C2F finetuning."
+    }
+  }
+}

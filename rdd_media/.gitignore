@@ -1,0 +1,5 @@
+# The upstream root ignores media globally. These small, curated README assets
+# should travel with this extension; do not change upstream ignore rules.
+!*.mp4
+!*.png
+!*.jpg

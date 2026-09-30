@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+review.html
+review.patch
+review_manifest.json
+*.pt
+runs/

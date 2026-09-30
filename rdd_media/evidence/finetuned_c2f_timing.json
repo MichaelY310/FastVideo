@@ -1,0 +1,270 @@
+{
+  "metadata": {
+    "checkpoint": "rdd_video_finetune_20260926/train/checkpoint-5003",
+    "row": 0,
+    "seed": 20260926,
+    "caption": [
+      {
+        "id": "mixkit-makeup-artist-and-male-model-in-photo-studio-42016",
+        "file_name": "mixkit-makeup-artist-and-male-model-in-photo-studio-42016",
+        "caption": "The video showcases a woman with long dark hair and glasses, dressed in black, meticulously applying makeup or concealer to a shirtless man's face, focusing on his cheeks and chin area. The man is adorned with a beard and wears a brown belt or accessory around his waist. Both individuals are set against a plain, gray background, indicative of a studio or photography setting. Throughout the process, the woman maintains a focused expression as she blends and smooths the makeup or concealer on the man's face, with no significant change in their positions or the background, suggesting a continuous makeup application in the same environment.",
+        "media_type": "video",
+        "width": 480,
+        "height": 832,
+        "num_frames": 21,
+        "duration_sec": 5.06,
+        "fps": 16.0,
+        "prompt": "The video showcases a woman with long dark hair and glasses, dressed in black, meticulously applying makeup or concealer to a shirtless man's face, focusing on his cheeks and chin area. The man is adorned with a beard and wears a brown belt or accessory around his waist. Both individuals are set against a plain, gray background, indicative of a studio or photography setting. Throughout the process, the woman maintains a focused expression as she blends and smooths the makeup or concealer on the man's face, with no significant change in their positions or the background, suggesting a continuous makeup application in the same environment."
+      }
+    ],
+    "factors": [
+      [
+        4,
+        1
+      ],
+      [
+        2,
+        1
+      ],
+      [
+        1,
+        1
+      ]
+    ],
+    "data_time_boundaries": [
+      0.0,
+      0.4,
+      0.7,
+      1.0
+    ],
+    "steps": [
+      20,
+      15,
+      15
+    ],
+    "cfg": 5.0,
+    "transition": "noise_filling",
+    "size": [
+      832,
+      448,
+      29
+    ],
+    "fps": 16,
+    "gpu": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+    "physical_gpu": "0",
+    "precision": "FP32 master/residual; official BF16 autocast",
+    "settings": {}
+  },
+  "records": [
+    {
+      "round": -1,
+      "setting": "dense",
+      "denoise": 14.75577330775559,
+      "vae": 1.4864757433533669,
+      "total": 16.242249051108956
+    },
+    {
+      "round": -1,
+      "setting": "c2f50",
+      "denoise": 18.286781864240766,
+      "vae": 1.4409459549933672,
+      "total": 19.727727819234133
+    },
+    {
+      "round": -1,
+      "setting": "c2f30",
+      "denoise": 14.2222248762846,
+      "vae": 1.4421778470277786,
+      "total": 15.664402723312378
+    },
+    {
+      "round": -1,
+      "setting": "c2f20",
+      "denoise": 13.880282409489155,
+      "vae": 1.4426217824220657,
+      "total": 15.32290419191122
+    },
+    {
+      "round": -1,
+      "setting": "c2f12",
+      "denoise": 13.626115914434195,
+      "vae": 1.4434764944016933,
+      "total": 15.069592408835888
+    },
+    {
+      "round": 0,
+      "setting": "dense",
+      "denoise": 14.647337822243571,
+      "vae": 1.4440875090658665,
+      "total": 16.091425331309438
+    },
+    {
+      "round": 0,
+      "setting": "c2f50",
+      "denoise": 14.97858513891697,
+      "vae": 1.4439672734588385,
+      "total": 16.422552412375808
+    },
+    {
+      "round": 0,
+      "setting": "c2f30",
+      "denoise": 14.224023334681988,
+      "vae": 1.4443433787673712,
+      "total": 15.668366713449359
+    },
+    {
+      "round": 0,
+      "setting": "c2f20",
+      "denoise": 13.86751557700336,
+      "vae": 1.4438574984669685,
+      "total": 15.311373075470328
+    },
+    {
+      "round": 0,
+      "setting": "c2f12",
+      "denoise": 13.568571150302887,
+      "vae": 1.444111006334424,
+      "total": 15.012682156637311
+    },
+    {
+      "round": 1,
+      "setting": "c2f50",
+      "denoise": 14.939680676907301,
+      "vae": 1.4439964704215527,
+      "total": 16.383677147328854
+    },
+    {
+      "round": 1,
+      "setting": "c2f30",
+      "denoise": 14.22045224159956,
+      "vae": 1.4441858679056168,
+      "total": 15.664638109505177
+    },
+    {
+      "round": 1,
+      "setting": "c2f20",
+      "denoise": 13.916790643706918,
+      "vae": 1.4438637644052505,
+      "total": 15.360654408112168
+    },
+    {
+      "round": 1,
+      "setting": "c2f12",
+      "denoise": 13.58150471933186,
+      "vae": 1.4440889954566956,
+      "total": 15.025593714788556
+    },
+    {
+      "round": 1,
+      "setting": "dense",
+      "denoise": 14.582336235791445,
+      "vae": 1.4445841182023287,
+      "total": 16.026920353993773
+    },
+    {
+      "round": 2,
+      "setting": "c2f30",
+      "denoise": 14.25685903802514,
+      "vae": 1.443974630907178,
+      "total": 15.700833668932319
+    },
+    {
+      "round": 2,
+      "setting": "c2f20",
+      "denoise": 13.92062758654356,
+      "vae": 1.4442817270755768,
+      "total": 15.364909313619137
+    },
+    {
+      "round": 2,
+      "setting": "c2f12",
+      "denoise": 13.615785418078303,
+      "vae": 1.44384522177279,
+      "total": 15.059630639851093
+    },
+    {
+      "round": 2,
+      "setting": "dense",
+      "denoise": 14.570614222437143,
+      "vae": 1.4445028640329838,
+      "total": 16.015117086470127
+    },
+    {
+      "round": 2,
+      "setting": "c2f50",
+      "denoise": 14.96731854788959,
+      "vae": 1.4442291520535946,
+      "total": 16.411547699943185
+    },
+    {
+      "round": 3,
+      "setting": "c2f20",
+      "denoise": 13.900289852172136,
+      "vae": 1.4439925272017717,
+      "total": 15.344282379373908
+    },
+    {
+      "round": 3,
+      "setting": "c2f12",
+      "denoise": 13.571255061775446,
+      "vae": 1.4438315499573946,
+      "total": 15.01508661173284
+    },
+    {
+      "round": 3,
+      "setting": "dense",
+      "denoise": 14.57894941419363,
+      "vae": 1.4444365222007036,
+      "total": 16.023385936394334
+    },
+    {
+      "round": 3,
+      "setting": "c2f50",
+      "denoise": 14.956037433817983,
+      "vae": 1.444443292915821,
+      "total": 16.400480726733804
+    },
+    {
+      "round": 3,
+      "setting": "c2f30",
+      "denoise": 14.229312039911747,
+      "vae": 1.4439707398414612,
+      "total": 15.673282779753208
+    },
+    {
+      "round": 4,
+      "setting": "c2f12",
+      "denoise": 13.640032881870866,
+      "vae": 1.4440841749310493,
+      "total": 15.084117056801915
+    },
+    {
+      "round": 4,
+      "setting": "dense",
+      "denoise": 14.600959498435259,
+      "vae": 1.4442982412874699,
+      "total": 16.04525773972273
+    },
+    {
+      "round": 4,
+      "setting": "c2f50",
+      "denoise": 14.98001566529274,
+      "vae": 1.444480862468481,
+      "total": 16.42449652776122
+    },
+    {
+      "round": 4,
+      "setting": "c2f30",
+      "denoise": 14.252230251207948,
+      "vae": 1.4441826343536377,
+      "total": 15.696412885561585
+    },
+    {
+      "round": 4,
+      "setting": "c2f20",
+      "denoise": 13.921284748241305,
+      "vae": 1.4441383928060532,
+      "total": 15.365423141047359
+    }
+  ]
+}

@@ -1,0 +1,164 @@
+{
+  "checkpoint": "rdd_video_finetune_20260926/train/checkpoint-5003",
+  "row": 0,
+  "seed": 20260926,
+  "caption": [
+    {
+      "id": "mixkit-makeup-artist-and-male-model-in-photo-studio-42016",
+      "file_name": "mixkit-makeup-artist-and-male-model-in-photo-studio-42016",
+      "caption": "The video showcases a woman with long dark hair and glasses, dressed in black, meticulously applying makeup or concealer to a shirtless man's face, focusing on his cheeks and chin area. The man is adorned with a beard and wears a brown belt or accessory around his waist. Both individuals are set against a plain, gray background, indicative of a studio or photography setting. Throughout the process, the woman maintains a focused expression as she blends and smooths the makeup or concealer on the man's face, with no significant change in their positions or the background, suggesting a continuous makeup application in the same environment.",
+      "media_type": "video",
+      "width": 480,
+      "height": 832,
+      "num_frames": 21,
+      "duration_sec": 5.06,
+      "fps": 16.0,
+      "prompt": "The video showcases a woman with long dark hair and glasses, dressed in black, meticulously applying makeup or concealer to a shirtless man's face, focusing on his cheeks and chin area. The man is adorned with a beard and wears a brown belt or accessory around his waist. Both individuals are set against a plain, gray background, indicative of a studio or photography setting. Throughout the process, the woman maintains a focused expression as she blends and smooths the makeup or concealer on the man's face, with no significant change in their positions or the background, suggesting a continuous makeup application in the same environment."
+    }
+  ],
+  "factors": [
+    [
+      4,
+      1
+    ],
+    [
+      2,
+      1
+    ],
+    [
+      1,
+      1
+    ]
+  ],
+  "data_time_boundaries": [
+    0.0,
+    0.4,
+    0.7,
+    1.0
+  ],
+  "steps": [
+    20,
+    15,
+    15
+  ],
+  "cfg": 5.0,
+  "transition": "noise_filling",
+  "size": [
+    832,
+    448,
+    29
+  ],
+  "fps": 16,
+  "gpu": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+  "physical_gpu": "0",
+  "precision": "FP32 master/residual; official BF16 autocast",
+  "settings": {
+    "dense": {
+      "requested_coarse_topk_fraction": null,
+      "actual_lifted_block_density": {},
+      "denoise_seconds": [
+        15.279683884233236,
+        15.347588244825602,
+        15.302009476348758
+      ],
+      "vae_seconds": [
+        1.4416152331978083,
+        1.4427719879895449,
+        1.4429473616182804
+      ],
+      "denoise_median": 15.302009476348758,
+      "total_median": 16.744956837967038,
+      "model_calls_cond_plus_uncond": 104,
+      "latent_rmse_vs_dense": 0.0,
+      "warning": "RMSE is paired fidelity, not a perceptual quality score; no C2F finetuning."
+    },
+    "c2f50": {
+      "requested_coarse_topk_fraction": 0.5,
+      "actual_lifted_block_density": {
+        "stage1": 0.5026910305023193,
+        "stage2": 0.5120109915733337
+      },
+      "denoise_seconds": [
+        15.871781440451741,
+        14.97389206662774,
+        14.985384346917272
+      ],
+      "vae_seconds": [
+        1.4433366935700178,
+        1.4433595780283213,
+        1.4445575084537268
+      ],
+      "denoise_median": 14.985384346917272,
+      "total_median": 16.429941855371,
+      "model_calls_cond_plus_uncond": 104,
+      "latent_rmse_vs_dense": 0.12994997203350067,
+      "warning": "RMSE is paired fidelity, not a perceptual quality score; no C2F finetuning."
+    },
+    "c2f30": {
+      "requested_coarse_topk_fraction": 0.3,
+      "actual_lifted_block_density": {
+        "stage1": 0.3119756579399109,
+        "stage2": 0.3131770193576813
+      },
+      "denoise_seconds": [
+        15.122707510367036,
+        15.447524216026068,
+        15.435698758810759
+      ],
+      "vae_seconds": [
+        1.4438325706869364,
+        1.4438121262937784,
+        1.4440211523324251
+      ],
+      "denoise_median": 15.435698758810759,
+      "total_median": 16.879719911143184,
+      "model_calls_cond_plus_uncond": 104,
+      "latent_rmse_vs_dense": 0.16249912977218628,
+      "warning": "RMSE is paired fidelity, not a perceptual quality score; no C2F finetuning."
+    },
+    "c2f20": {
+      "requested_coarse_topk_fraction": 0.2,
+      "actual_lifted_block_density": {
+        "stage1": 0.2485615313053131,
+        "stage2": 0.22025224566459656
+      },
+      "denoise_seconds": [
+        14.028077496215701,
+        13.874251082539558,
+        15.202993415296078
+      ],
+      "vae_seconds": [
+        1.443407291546464,
+        1.4444835279136896,
+        1.4439472556114197
+      ],
+      "denoise_median": 14.028077496215701,
+      "total_median": 15.471484787762165,
+      "model_calls_cond_plus_uncond": 104,
+      "latent_rmse_vs_dense": 0.19799292087554932,
+      "warning": "RMSE is paired fidelity, not a perceptual quality score; no C2F finetuning."
+    },
+    "c2f12": {
+      "requested_coarse_topk_fraction": 0.125,
+      "actual_lifted_block_density": {
+        "stage1": 0.1286068856716156,
+        "stage2": 0.13081641495227814
+      },
+      "denoise_seconds": [
+        14.906768064945936,
+        14.767884735018015,
+        14.201456692069769
+      ],
+      "vae_seconds": [
+        1.443429198116064,
+        1.4430522918701172,
+        1.443291898816824
+      ],
+      "denoise_median": 14.767884735018015,
+      "total_median": 16.210937026888132,
+      "model_calls_cond_plus_uncond": 104,
+      "latent_rmse_vs_dense": 0.25222212076187134,
+      "warning": "RMSE is paired fidelity, not a perceptual quality score; no C2F finetuning."
+    }
+  }
+}

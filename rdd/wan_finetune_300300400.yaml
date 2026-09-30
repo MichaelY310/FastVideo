@@ -1,0 +1,59 @@
+# Non-DMD Wan2.1; finest/middle/coarse time allocation = 300/300/400.
+models:
+  student:
+    _target_: rdd.finetune.RDDWanModel
+    init_from: rdd/runs/wan_base/assets/Wan2.1-T2V-1.3B-Diffusers
+    trainable: true
+    attention_backend: FLASH_ATTN
+    factors: [[4, 1], [2, 1], [1, 1]]
+    boundaries: [0.0, 0.4, 0.7, 1.0]
+    flow_shift: 1.0
+method:
+  _target_: rdd.finetune.RDDFineTuneMethod
+  preview_every: 250
+  validation_dir: rdd/runs/wan_base/assets/mixkit/validation
+training:
+  distributed:
+    num_gpus: 8
+    sp_size: 1
+    tp_size: 1
+    hsdp_replicate_dim: 1
+    hsdp_shard_dim: 8
+  data:
+    data_path: rdd/runs/wan_base/assets/mixkit/train
+    dataloader_num_workers: 1
+    train_batch_size: 1
+    training_cfg_rate: 0.1
+    seed: 20260926
+    num_latent_t: 8
+    num_height: 448
+    num_width: 832
+    num_frames: 29
+  optimizer:
+    learning_rate: 1.0e-5
+    betas: [0.9, 0.999]
+    weight_decay: 0.01
+    lr_scheduler: constant_with_warmup
+    lr_warmup_steps: 100
+  loop:
+    max_train_steps: 20000
+    gradient_accumulation_steps: 2
+  checkpoint:
+    output_dir: rdd/runs/wan_base/train
+    training_state_checkpointing_steps: 100
+    checkpoints_total_limit: 2
+  tracker:
+    trackers: [none]
+    project_name: ''
+    run_name: rdd_wan_base_300300400
+  model:
+    enable_gradient_checkpointing_type: full
+    weighting_scheme: uniform
+    precondition_outputs: false
+  dit_precision: fp32
+callbacks:
+  grad_clip:
+    _target_: fastvideo.train.callbacks.grad_clip.GradNormClipCallback
+    max_grad_norm: 1.0
+pipeline:
+  flow_shift: 1.0
