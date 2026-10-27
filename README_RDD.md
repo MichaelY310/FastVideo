@@ -80,7 +80,7 @@ Recognizable composition replaces color blocks. Hand/face artifacts and limited 
 <p>Original weights; Euler50 / CFG5 / flow shift 1; 100 model calls. Not an optimized official Wan sampler.</p>
 </details>
 
-## C2F
+## C2F (future work)
 
 Use each stage's endpoint Q/K to select block routes for the next stage. Recompute current Q/K/V and sparse attention every step.
 
